@@ -35,9 +35,23 @@ if fr.mode == 'rb':
             # Print floats
             print(time1f)
             print(time2f)
-            # Print floats + shift
-            print(time1f + shift)
-            print(time2f + shift)
+            # Print floats + shift (rounded at miliseconds)
+            new_time1f = round(time1f + shift, 3)
+            new_time2f = round(time2f + shift, 3)
+            print(new_time1f)
+            print(new_time2f)
+            # Get the new time string (adding zeros to the left if necessary)
+            new_time1str = '0' * (len(time1str) - len(str(new_time1f))) + str(new_time1f)
+            new_time2str = '0' * (len(time2str) - len(str(new_time2f))) + str(new_time2f)
+            print(new_time1str)
+            print(new_time2str)
+            o = len(time1str) - 10 # Necessary if hours > 99
+            new_time1str = new_time1str[:(2 + o)] + ':' +  new_time1str[(2 + o):(4 + o)] + ':' +  new_time1str[(4 + o):]
+            new_time1str = new_time1str.replace('.', ',')
+            new_time2str = new_time2str[:(2 + o)] + ':' +  new_time2str[(2 + o):(4 + o)] + ':' +  new_time2str[(4 + o):]
+            new_time2str = new_time2str.replace('.', ',')
+            print(new_time1str)
+            print(new_time2str)
         fw.write(l)
 
 fr.close()
