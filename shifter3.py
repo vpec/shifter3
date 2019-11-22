@@ -11,8 +11,8 @@ shift = float(sys.argv[2])
 
 if fr.mode == 'rb':
     lines = fr.readlines()
+    intervalPattern = re.compile(b"[0-9]+:[0-9]+:[0-9]+,[0-9]+ --> [0-9]+:[0-9]+:[0-9]+,[0-9]+")
     for l in lines:
-        intervalPattern = re.compile(b"[0-9]+:[0-9]+:[0-9]+,[0-9]+ --> [0-9]+:[0-9]+:[0-9]+,[0-9]+")
         if intervalPattern.match(l) :
             # print binary stream
             print(l)
@@ -36,11 +36,13 @@ if fr.mode == 'rb':
             print(time1f)
             print(time2f)
             # Print floats + shift (rounded at miliseconds)
-            new_time1f = round(time1f + shift, 3)
-            new_time2f = round(time2f + shift, 3)
+            new_time1f = "{0:.3f}".format(time1f + shift)
+            new_time2f = "{0:.3f}".format(time2f + shift)
             print(new_time1f)
             print(new_time2f)
             # Get the new time string (adding zeros to the left if necessary)
+            print(len(time1str))
+            print(len(str(new_time1f)))
             new_time1str = '0' * (len(time1str) - len(str(new_time1f))) + str(new_time1f)
             new_time2str = '0' * (len(time2str) - len(str(new_time2f))) + str(new_time2f)
             print(new_time1str)
@@ -52,7 +54,11 @@ if fr.mode == 'rb':
             new_time2str = new_time2str.replace('.', ',')
             print(new_time1str)
             print(new_time2str)
-        fw.write(l)
+            new_str = new_time1str + ' --> ' + new_time2str + '\r\n'
+            print(bytes(new_str, 'utf-8'))
+            fw.write(bytes(new_str, 'utf-8'))
+        else :
+            fw.write(l)
 
 fr.close()
 fw.close()
