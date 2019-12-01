@@ -1,15 +1,27 @@
 import sys
 import re
+import os
 import datetime
 
-# Arguments:
-#   argv[1] -> input str file
-#   argv[2] -> shift value
+if len(sys.argv) == 3 :
+    outputFile = sys.argv[2]
+elif len(sys.argv) == 4 :
+    outputFile = sys.argv[3]
+else :
+    print("Usage: shifter3 <SHIFT_IN_SECONDS> <INPUT_FILE>")
+    print("Usage (optional): shifter3 <SHIFT_IN_SECONDS> <INPUT_FILE> <OUTPUT_FILE>")
+    exit(1)
 
-fr = open(sys.argv[1],"rb")
-fw = open(sys.argv[1] + '.new',"wb+")
+# Arguments:
+#   argv[1] -> shift value
+#   argv[2] -> input str file
+#   argv[3] -> output str file
+
+
+fr = open(sys.argv[2],"rb")
+fw = open(outputFile + ".new","wb+")
 # Get shift parameter
-shift = float(sys.argv[2])
+shift = float(sys.argv[1])
 
 if fr.mode == 'rb':
     # Get lines from file
@@ -55,4 +67,8 @@ if fr.mode == 'rb':
 # Close files
 fr.close()
 fw.close()
-print("Shifted " + str(shift) + " seconds")
+os.rename(outputFile + ".new", outputFile)
+if len(sys.argv) == 3 :
+    print(sys.argv[2] + " shifted " + str(shift) + " seconds")
+else :
+    print(sys.argv[2] + " shifted " + str(shift) + " seconds to " + outputFile)
