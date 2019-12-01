@@ -12,16 +12,16 @@ shifter3 accepts 2 or 3 arguments:
   - Third argument (OPTIONAL): your .srt ouput file. If this argument is provided, your input file will be left intact after the execution of this script.
   
 ## Examples
-Subtitles in mysubtitles.srt show up too soon, I want all of them to start 0.25 seconds later:
+Subtitles in mysubtitles.srt show up too soon, I want all of them to start (and finish) 0.25 seconds later:
 
 `$ shifter3 0.25 mysubtitles.srt`
 
-Subtitles in mysubtitles.srt show up too late, I want all of them to start 0.25 seconds before:
+Subtitles in mysubtitles.srt show up too late, I want all of them to start (and finish) 0.25 seconds before:
 
 `$ shifter3 -0.25 mysubtitles.srt`
 
 
-Subtitles in mysubtitles.srt show up too late, I want all of them to start 1 seconds before AND get the result in a new file named myNEWsubtitles.srt:
+Subtitles in mysubtitles.srt show up too late, I want all of them to start (and finish) 1 second before AND get the result in a new file named myNEWsubtitles.srt:
 
 `$ shifter3 -1 mysubtitles.srt myNEWsubtitles.srt`
 
@@ -34,5 +34,5 @@ Alternatively, you can download it as zip package and then uncompress it.
 3. Enter the directory:
 `$ cd shifter3`
 4. After the download, you might not have execution permissions on the script. To fix this, execute `$ chmod u+x shifter3`. 
-5. If you want to use this script from any directory in your system, you can add the shifter3 directory path to system path. [This tutorial](https://gist.github.com/nex3/c395b2f8fd4b02068be37c961301caa7) explains how to do it.
+5. If you want to use this script from any directory in your system, you can add the shifter3 directory path to the system 's path. [This tutorial](https://gist.github.com/nex3/c395b2f8fd4b02068be37c961301caa7) explains how to do it.
 6. Now you can execute shifter3. If you didn't follow step number 5, you will have to execute the script from its directory using `$ ./shifter3` instead of `$ shifter3`
